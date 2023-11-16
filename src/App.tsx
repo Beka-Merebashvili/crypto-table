@@ -1,5 +1,6 @@
 import { useState } from "react";
 import AmountInput from "./components/AmountInput";
+import ResultRow from "./components/ResultRow";
 
 function App() {
   const [amount, setAmount] = useState("100");
@@ -10,6 +11,12 @@ function App() {
       </h1>
       <div className="flex justify-center mt-8">
         <AmountInput value={amount} onChange={e => setAmount(e.target.value)} />
+      </div>
+      <div className="mt-6">
+        <ResultRow />
+        <ResultRow />
+        <ResultRow />
+        <ResultRow />
       </div>
     </main>
   );
