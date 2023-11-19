@@ -3,13 +3,19 @@ import axios from "axios";
 import AmountInput from "./components/AmountInput";
 import ResultRow from "./components/ResultRow";
 
+type CashedResult = {
+  provaider: string;
+  btc: string;
+}
+
 function App() {
   const [amount, setAmount] = useState("100");
-  const [cachedResults, setCschedResults] = useState([]);
+  const [cachedResults, setCschedResults] = useState<CashedResult[]>([]);
   const [loading, setLoading] = useState(true);
   useEffect(() => {
     axios.get("https://rds54favbg.us.aircode.run/cachedValues").then((res) => {
       setCschedResults(res.data);
+      setLoading(false);
     });
   }, []);
   return (
@@ -32,6 +38,12 @@ function App() {
             <ResultRow loading={true} />
           </>
         )}
+       {!loading && cachedResults.map(result => (
+        <ResultRow 
+        provaiderName={result.provaider} 
+        btc={result.btc}
+        />
+       ))}
       </div>
     </main>
   );

@@ -14,7 +14,9 @@ export default function ResultRow({loading , provaiderName , btc}:ResultRowProps
         <div className="grow">{provaiderName || ""}</div>
         {btc && (
            <div className="flex gap-2">
-           <span className="text-xl text-purple-200/80">0.001</span>
+           <span className="text-xl text-purple-200/80">
+            { new Intl.NumberFormat('sv-SE' , {minimumFractionDigits:8}).format(parseFloat(btc))}
+           </span>
            <span className="text-xl text-purple-300/50">BTC</span>
        </div>
         )}
