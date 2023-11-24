@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import AmountInput from "./components/AmountInput";
 import ResultRow from "./components/ResultRow";
+import { sortBy } from "lodash";
 
 type CashedResult = {
   provaider: string;
@@ -18,6 +19,9 @@ function App() {
       setLoading(false);
     });
   }, []);
+
+const sortedCashe = sortBy(cachedResults, 'btc').reverse();
+
   return (
     <main className="max-w 2xl mx-auto px-4 py-8">
       <h1 className="uppercase text-6xl text-center font-bold bg-gradient-to-br from-purple-600 to-sky-400 bg-clip-text text-transparent from-30%">
@@ -38,9 +42,10 @@ function App() {
             <ResultRow loading={true} />
           </>
         )}
-       {!loading && cachedResults.map(result => (
+       {!loading && sortedCashe.map((result:CashedResult) => (
         <ResultRow 
-        provaiderName={result.provaider} 
+        kay={result.provaider}
+        // provaiderName={result.provaider} 
         btc={result.btc}
         />
        ))}
