@@ -1,4 +1,4 @@
-import paybisLogo from "../assets/paybis.webp"
+import paybisLogo from '../assets/paybis.webp';
 
 type ResultRowProps = {
   loading?: boolean;
